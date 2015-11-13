@@ -131,8 +131,8 @@ function pathauto_path_delete_all($source) {
  *   The optional default uri path for the entity.
  */
 function pathauto_entity_path_delete_all(EntityInterface $entity, $default_uri = NULL) {
-  pathauto_path_delete_all($entity->getSystemPath());
-  if (isset($default_uri) && $entity->getSystemPath() != $default_uri) {
+  pathauto_path_delete_all($entity->url());
+  if (isset($default_uri) && $entity->url() != $default_uri) {
     pathauto_path_delete_all($default_uri);
   }
 }

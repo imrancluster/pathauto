@@ -20,6 +20,7 @@ use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\StringTranslation\TranslationInterface;
 use Drupal\Core\Utility\Token;
 
+
 /**
  * Provides methods for managing pathauto aliases and related entities.
  */
@@ -413,7 +414,7 @@ class PathautoManager implements PathautoManagerInterface {
     // Build the new path alias array and send it off to be created.
     $path = array(
       'source' => $source,
-      'alias' => $alias,
+      'alias' => '/'.$alias,
       'language' => $langcode,
     );
 
@@ -491,7 +492,7 @@ class PathautoManager implements PathautoManagerInterface {
     }
 
     $result = $this->createAlias(
-      $type, $op, $entity->getSystemPath(), array($type => $entity), $bundle, $options['language']);
+      $type, $op, $entity->url(), array($type => $entity), $bundle, $options['language']);
 
     if ($type == 'taxonomy_term' && empty($options['is_child'])) {
       // For all children generate new aliases.
